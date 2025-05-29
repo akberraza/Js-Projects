@@ -1,5 +1,5 @@
-Age Calculator: https://app.netlify.com/projects/age-calculator-by-akbar-raza/
-Bulb Project: https://app.netlify.com/projects/age-calculator-by-akbar-raza/
+Age Calculator: https://app.netlify.com/projects/age-calculator-by-akbar-raza/                                                                                       
+Bulb Project: https://app.netlify.com/projects/age-calculator-by-akbar-raza/                                                                                               
 Caluclator: https://akbar-raza-calculator.netlify.app/
 Cuntraction-Funshion-project: https://cuntraction-funshion-project-by-akbar.netlify.app/
 Digital Project: https://digital-clock-by-akbar-raza.netlify.app/
