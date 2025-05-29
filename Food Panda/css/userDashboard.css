@@ -1,0 +1,15 @@
+body {
+  padding: 0px;
+  margin: 0px;
+  font: 400 16px/1.5em "Open Sans", sans-serif;
+}
+.page-content {
+  max-width: 100%;
+  padding: 32px;
+  background: #fff;
+}
+
+a:hover {
+  color: #b721ff;
+}
+

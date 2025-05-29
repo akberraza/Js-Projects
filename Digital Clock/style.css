@@ -1,0 +1,81 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #111;
+  }
+  
+  .clock {
+    width: 300px;
+    height: 300px;
+    border: 10px solid;
+    /* border-image: linear-gradient(45deg, cyan, magenta) 1; */
+    border-radius: 50%; /* ✅ Perfect circle */
+    position: relative;
+    background: radial-gradient(circle, #001f2f, #000c1a);
+    box-shadow: 0 0 30px cyan;
+  }
+  
+  .hand {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform-origin: bottom;
+    transform: rotate(90deg);
+    border-radius: 6px;
+  }
+  
+  .hour {
+    width: 6px;
+    height: 70px;
+    background: cyan;
+  }
+  
+  .minute {
+    width: 4px;
+    height: 100px;
+    background: magenta;
+  }
+  
+  .second {
+    width: 2px;
+    height: 120px;
+    background: white;
+  }
+  
+  .center {
+    width: 14px;
+    height: 14px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  /* Numbers styling */
+  .number {
+    position: absolute;
+    color: #0ff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-family: sans-serif;
+  }
+  
+  /* Positioning each number using trigonometry (approximate) */
+  .number1  { top: 20px;  right: 75px; }
+  .number2  { top: 70px;  right: 30px; }
+  .number3  { top: 137px; right: 15px; }
+  .number4  { bottom: 70px; right: 30px; }
+  .number5  { bottom: 20px; right: 75px; }
+  .number6  { bottom: 6px; left: 50%; transform: translateX(-50%); }
+  .number7  { bottom: 20px; left: 75px; }
+  .number8  { bottom: 70px; left: 30px; }
+  .number9  { top: 137px; left: 15px; }
+  .number10 { top: 70px;  left: 30px; }
+  .number11 { top: 20px;  left: 65px; }
+  .number12 { top: 6px;   left: 50%; transform: translateX(-50%); }
+  

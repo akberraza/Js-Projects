@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Calculator</title>
+</head>
+<body>
+    
+
+<div class="main">
+
+<h1>Calculator</h1>
+
+<div>
+    <input value="" type="text" id="inp" readonly >
+</div>
+<br>    
+
+<div>
+    <button onclick="clrall()" class="click">AC</button>
+    <button onclick="clr()" class="click">C</button>
+    <button onclick="btnClick('%')" class="click">%</button>
+    <button onclick="btnClick('/')" class="click">/</button>
+</div>
+<br>
+<div>
+    <button onclick="btnClick(7)" class="click2">7</button>
+    <button onclick="btnClick(8)" class="click2">8</button>
+    <button onclick="btnClick(9)" class="click2">9</button>
+    <button onclick="btnClick('*')" class="click">x</button>
+</div>
+<br>
+<div>
+    <button onclick="btnClick(5)" class="click2">5</button>
+    <button onclick="btnClick(4)" class="click2">4</button>
+    <button onclick="btnClick(6)" class="click2">6</button>
+    <button onclick="btnClick('-')" class="click">-</button>
+</div>
+<br>
+<div>
+    <button onclick="btnClick(1)" class="click2">1</button>
+    <button onclick="btnClick(2)" class="click2">2</button>
+    <button onclick="btnClick(3)" class="click2">3</button>
+    <button onclick="btnClick('+')" class="click">+</button>
+</div>
+<br>
+<div>
+    <button onclick="btnClick('00')" class="click2">00</button>
+    <button onclick="btnClick(0)" class="click2">0</button>
+    <button onclick="btnClick('.')" class="click2">.</button>
+    <button onclick="eq()"  class="click">=</button>
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <script src="app.js"></script>
+</body>
+</html>

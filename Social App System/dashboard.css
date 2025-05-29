@@ -1,0 +1,34 @@
+ body {
+      background-color: #f4f6f9;
+      padding-top: 80px;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .fixed-header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 999;
+      background: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .card-columns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .card-columns .card {
+      flex: 1 1 calc(33.333% - 20px);
+      transition: transform 0.2s;
+    }
+    .card-columns .card:hover {
+      transform: scale(1.02);
+    }
+    @media (max-width: 768px) {
+      .card-columns .card {
+        flex: 1 1 100%;
+      }
+    }

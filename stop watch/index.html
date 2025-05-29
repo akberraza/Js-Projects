@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Stop Watch</title>
+</head>
+<body>
+    <div class="main">
+        <div class="">
+            <span><i class="fa-solid fa-hourglass-end"></i>Timer</span>
+            <span><i class="fa-solid fa-check"></i>stopWatch</span>
+        </div>
+        <div class="">
+            <span><i class="fa-solid fa-volume-high"></i></span>
+            <span><i class="fa-solid fa-expand"></i></span>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="outer-cicle" id="outer-cicle">
+            <div class="inner-circle" id="inner-circle">
+                <h2 id="display">00:00:00:000</h2>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="buttons">
+        <button class="start" id="startBtn" onclick="startTimer()"><i class="fa-solid fa-play"></i></button>
+        <button class="start2" id="startBtn2" onclick="startTimer2()"><i class="fa-solid fa-play"></i></button>
+        <button class="stop" id="stopBtn" onclick="stopTimer()"><i class="fa-solid fa-pause"></i></i></button>
+        <button class="stop" id="resatBtn" onclick="resatTimer()"><i class="fa-solid fa-rotate-left"></i></button>
+    </div>
+
+
+    <script src="app.js"></script>
+</body>
+</html>

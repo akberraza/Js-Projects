@@ -1,0 +1,28 @@
+body{
+    background-color: black;
+}
+.center{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+
+}
+.center img{
+    height: 400px;
+}
+#btn{
+    cursor: pointer;
+    height: 50px;
+    width: 180px;
+    border-radius: 25px;
+    border:2px solid white;
+    background-color: yellow;
+    outline: none;
+    font-size: 1.5rem;
+    font-weight: 600;
+transition-duration: .5s;
+}
+#btn:hover{
+    transform: scale(1.1);
+}

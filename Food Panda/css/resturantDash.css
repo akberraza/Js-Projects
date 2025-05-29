@@ -1,0 +1,26 @@
+body {
+  padding: 0px;
+  margin: 0px;
+  font: 400 16px/1.5em "Open Sans", sans-serif;
+}
+.page-content {
+  max-width: 100%;
+  padding: 32px;
+  background: #fff;
+}
+  .pink {
+      background-color: #d70f64 !important;
+      color: white !important;
+      border: none;
+      width: 150px;
+      list-style: none;
+    }
+
+    .pink:hover {
+      color: #d70f64 !important;
+      background-color: white !important;
+      border: 1px solid #d70f64 !important;
+    }
+a:hover {
+  color: #b721ff;
+}
