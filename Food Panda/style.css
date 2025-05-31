@@ -26,7 +26,6 @@ body {
 }
 
 .logo {
-  color: var(--primary-color);
   cursor: pointer;
 }
 

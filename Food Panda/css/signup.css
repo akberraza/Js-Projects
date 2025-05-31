@@ -9,7 +9,6 @@ body {
 }
 
 .background {
-  /* background-image: url(../images/resturant.jpg); */
   height: auto;
 }
 
@@ -48,8 +47,6 @@ background: white !important;
 .link-style:hover{
   color: #c90e5c;
 }
-
-
 
 .shadow-remove:focus {
   border: 0px !important;
