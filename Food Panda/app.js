@@ -62,7 +62,7 @@ function userSignUp() {
 
 // ========== Restaurant Signup ==========
 var restaurantArr = JSON.parse(localStorage.getItem("restaurants")) || [];
- 
+
 function resturantSignUp() {
   var name = document.querySelector("#signupResName").value.trim();
   var email = document.querySelector("#signupResEmail").value.trim();
@@ -139,6 +139,7 @@ function login() {
       ) {
         user = restaurantArr[j];
         localStorage.setItem("shopName", user.username);
+        localStorage.setItem("currentRestaurantEmail", user.email);  // ✅ ADDED LINE HERE
         break;
       }
     }
@@ -153,4 +154,3 @@ function login() {
     Swal.fire("Login Failed", "Email or password is incorrect!", "error");
   }
 }
-

@@ -1,3 +1,4 @@
+// ======== Get Category Name from URL ========
 var categoryName = (function () {
   var params = window.location.search.substring(1).split('&');
   for (var i = 0; i < params.length; i++) {
@@ -9,9 +10,12 @@ var categoryName = (function () {
   return "Unknown";
 })();
 
+// ======== Set Page Titles (Category & Shop Name) ========
 document.getElementById("categoryNameTitle").textContent = categoryName;
 document.getElementById("shopNameNav").textContent = localStorage.getItem("shopName") || "Restaurant";
 
+// ======== Define Variables for DOM Elements ========
+var currentRestaurantEmail = localStorage.getItem("currentRestaurantEmail");
 var itemsContainer = document.getElementById("itemsContainer");
 var itemNameInput = document.getElementById("itemName");
 var itemPriceInput = document.getElementById("itemPrice");
@@ -20,11 +24,21 @@ var itemImageInput = document.getElementById("itemImage");
 var itemImgPreview = document.getElementById("itemImgPreview");
 var itemIndexInput = document.getElementById("itemIndex");
 
-var itemsData = JSON.parse(localStorage.getItem("items")) || {};
-if (!itemsData[categoryName]) {
-  itemsData[categoryName] = [];
+// ======== Load Existing Items from localStorage ========
+var allItemsData = JSON.parse(localStorage.getItem("items")) || {};
+
+// ======== Initialize Empty Structure If Needed ========
+if (!allItemsData[currentRestaurantEmail]) {
+  allItemsData[currentRestaurantEmail] = {};
+}
+if (!allItemsData[currentRestaurantEmail][categoryName]) {
+  allItemsData[currentRestaurantEmail][categoryName] = [];
 }
 
+// ======== Shortcut to Category-Specific Items Array ========
+var itemsData = allItemsData[currentRestaurantEmail][categoryName];
+
+// ======== Preview Image Function ========
 function previewImage() {
   var file = itemImageInput.files[0];
   if (file) {
@@ -37,17 +51,17 @@ function previewImage() {
   }
 }
 
+// ======== Render Items in Cards ========
 function renderItems() {
-  var items = itemsData[categoryName];
   itemsContainer.innerHTML = "";
 
-  if (items.length === 0) {
+  if (itemsData.length === 0) {
     itemsContainer.innerHTML = '<p class="text-center text-muted">No items in this category yet.</p>';
     return;
   }
 
-  for (var i = 0; i < items.length; i++) {
-    var item = items[i];
+  for (var i = 0; i < itemsData.length; i++) {
+    var item = itemsData[i];
     itemsContainer.innerHTML +=
       '<div class="col-md-4 my-3">' +
         '<div class="card">' +
@@ -64,8 +78,9 @@ function renderItems() {
   }
 }
 
+// ======== Fill Form Inputs to Edit Existing Item ========
 function editItem(index) {
-  var item = itemsData[categoryName][index];
+  var item = itemsData[index];
   itemNameInput.value = item.name;
   itemPriceInput.value = item.price;
   itemDescInput.value = item.description;
@@ -73,29 +88,29 @@ function editItem(index) {
   itemImgPreview.style.display = "block";
   itemIndexInput.value = index;
 
-  // SHOW MODAL MANUALLY
   var myModal = new bootstrap.Modal(document.getElementById('itemModal'));
   myModal.show();
 }
 
-
+// ======== Delete Item with Confirmation ========
 function deleteItem(index) {
   Swal.fire({
     title: "Are you sure?",
-    text: 'Delete item "' + itemsData[categoryName][index].name + '"?',
+    text: 'Delete item "' + itemsData[index].name + '"?',
     icon: "warning",
     showCancelButton: true,
     confirmButtonText: "Yes, delete it!",
   }).then(function (result) {
     if (result.isConfirmed) {
-      itemsData[categoryName].splice(index, 1);
-      localStorage.setItem("items", JSON.stringify(itemsData));
+      itemsData.splice(index, 1);
+      localStorage.setItem("items", JSON.stringify(allItemsData));
       renderItems();
       Swal.fire("Deleted!", "Item has been deleted.", "success");
     }
   });
 }
 
+// ======== Save New or Edited Item ========
 function saveItem() {
   var name = itemNameInput.value.trim();
   var price = itemPriceInput.value.trim();
@@ -103,6 +118,7 @@ function saveItem() {
   var image = itemImgPreview.src;
   var index = itemIndexInput.value;
 
+  // Validate fields
   if (!name || !price || !description || !image) {
     Swal.fire("Error", "All fields are required!", "error");
     return;
@@ -111,13 +127,18 @@ function saveItem() {
   var newItem = { name: name, price: price, description: description, image: image };
 
   if (index) {
-    itemsData[categoryName][index] = newItem;
+    // Update existing item
+    itemsData[index] = newItem;
   } else {
-    itemsData[categoryName].push(newItem);
+    // Add new item
+    itemsData.push(newItem);
   }
 
-  localStorage.setItem("items", JSON.stringify(itemsData));
+  // Save changes to localStorage
+  allItemsData[currentRestaurantEmail][categoryName] = itemsData;
+  localStorage.setItem("items", JSON.stringify(allItemsData));
 
+  // Reset form
   itemNameInput.value = "";
   itemPriceInput.value = "";
   itemDescInput.value = "";
@@ -130,4 +151,5 @@ function saveItem() {
   renderItems();
 }
 
+// ======== Initial Render on Page Load ========
 renderItems();
