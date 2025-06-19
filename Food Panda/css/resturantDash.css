@@ -15,7 +15,7 @@ body {
   color: white !important;
   border: none;
   width: 150px;
-  list-style: none;
+  list-style: none; 
 }
 
 .pink:hover {

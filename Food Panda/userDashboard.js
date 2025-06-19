@@ -52,7 +52,7 @@ function renderAllItems(container) {
   }
 }
 
-window.addToCart = function (itemName) {
+window.addToCart = function (itemName) { 
   var item = window.allItems.find(function (itm) {
     return itm.name === itemName;
   });
@@ -110,61 +110,64 @@ function renderCartModal() {
 
   var totalPrice = 0;
 
-  window.cartItems.forEach(function (cartItem, index) {
-    var fullItem = window.allItems.find(function (itm) {
-      return itm.name === cartItem.name;
-    }) || { image: "", description: "" };
+  for (var i = 0; i < window.cartItems.length; i++) {
+    var cartItem = window.cartItems[i];
+
+    var fullItem = null;
+    for (var j = 0; j < window.allItems.length; j++) {
+      if (window.allItems[j].name === cartItem.name) {
+        fullItem = window.allItems[j];
+        break;
+      }
+    }
+
+    if (!fullItem) {
+      fullItem = { image: "", description: "", price: cartItem.price };
+    }
 
     totalPrice += (cartItem.price || 0) * (cartItem.quantity || 1);
 
-cartItemsContainer.innerHTML += 
-  '<div class="card mb-3 border-0 w-100" style="border-top: 2px solid #ccc;">' +
-    '<div class="row g-0 align-items-stretch">' +
+    cartItemsContainer.innerHTML += 
+      '<div class="card mb-3 border-0 w-100" style="border-top: 2px solid #ccc;">' +
+        '<div class="row g-0 align-items-stretch">' +
 
-      // Image Column - Circle Shape
-      '<div class="col-4 d-flex justify-content-center align-items-center">' +
-        '<img src="' + fullItem.image + '" class="img-fluid rounded-circle" style="width: 100px; height: 100px; object-fit: cover;" alt="' + cartItem.name + '">' +
-      '</div>' +
+          '<div class="col-4 d-flex justify-content-center align-items-center">' +
+            '<img src="' + fullItem.image + '" class="img-fluid rounded-circle" style="width: 100px; height: 100px; object-fit: cover;" alt="' + cartItem.name + '">' +
+          '</div>' +
 
-      // Content Column
-      '<div class="col-8 d-flex flex-column justify-content-between">' +
-        '<div class="p-2">' +
-          '<div class="d-flex justify-content-between align-items-start">' +
-            '<div>' +
-              '<h6 class="mb-1 fw-bold">' + cartItem.name + '</h6>' +
-              '<small class="text-muted">' + fullItem.description + '</small>' +
+          '<div class="col-8 d-flex flex-column justify-content-between">' +
+            '<div class="p-2">' +
+              '<div class="d-flex justify-content-between align-items-start">' +
+                '<div>' +
+                  '<h6 class="mb-1 fw-bold">' + cartItem.name + '</h6>' +
+                  '<small class="text-muted">' + fullItem.description + '</small>' +
+                '</div>' +
+                '<div class="text-end">' +
+                  '<span class="fw-bold">Rs ' + fullItem.price + '</span>' +
+                '</div>' +
+              '</div>' +
             '</div>' +
-            '<div class="text-end">' +
-              '<span class="fw-bold">Rs ' + fullItem.price + '</span>' +
+
+            '<div class="px-2 pb-2 d-flex justify-content-end align-items-center">' +
+              '<button class="btn btn-sm text-white me-0" style="background-color: #e91e63; border-top-left-radius: 10px; border-bottom-left-radius: 10px; height: 32px;" onclick="decreaseQuantity(' + i + ')">' +
+                '<i class="bi bi-dash"></i>' +
+              '</button>' +
+
+              '<span class="d-inline-block text-center" style="min-width: 40px; height: 32px; line-height: 32px; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc;">' + cartItem.quantity + '</span>' +
+
+              '<button class="btn btn-sm text-white ms-0" style="background-color: #e91e63; border-top-right-radius: 10px; border-bottom-right-radius: 10px; height: 32px;" onclick="increaseQuantity(' + i + ')">' +
+                '<i class="bi bi-plus"></i>' +
+              '</button>' +
             '</div>' +
+
           '</div>' +
         '</div>' +
-
-        // Quantity Controls (Fixed Border Issue)
-        '<div class="px-2 pb-2 d-flex justify-content-end align-items-center">' +
-          '<button class="btn btn-sm text-white me-0" style="background-color: #e91e63; border-top-left-radius: 10px; border-bottom-left-radius: 10px; height: 32px;" onclick="decreaseQuantity(' + index + ')">' +
-            '<i class="bi bi-dash"></i>' +
-          '</button>' +
-
-          '<span class="d-inline-block text-center" style="min-width: 40px; height: 32px; line-height: 32px; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc;">' + cartItem.quantity + '</span>' +
-
-          '<button class="btn btn-sm text-white ms-0" style="background-color: #e91e63; border-top-right-radius: 10px; border-bottom-right-radius: 10px; height: 32px;" onclick="increaseQuantity(' + index + ')">' +
-            '<i class="bi bi-plus"></i>' +
-          '</button>' +
-        '</div>' +
-
-      '</div>' +
-    '</div>' +
-  '</div>';
-
-
-
-
-
-  });
+      '</div>';
+  }
 
   document.getElementById("totalPrice").textContent = totalPrice.toFixed(2);
 }
+
 
 function increaseQuantity(index) {
   window.cartItems[index].quantity += 1;
@@ -192,13 +195,14 @@ function syncCart() {
 function placeOrder() {
   var loginUser = JSON.parse(localStorage.getItem("loggedIn"));
   if (!loginUser) {
-    alert("Please log in to place an order.");
-    window.location.href = "index.html";
+    Swal.fire("Login Required", "Please log in to place an order.", "warning").then(function () {
+      window.location.href = "index.html";
+    });
     return;
   }
 
   if (!window.cartItems.length) {
-    alert("Your cart is empty!");
+    Swal.fire("Cart Empty", "Your cart is empty!", "info");
     return;
   }
 
@@ -207,21 +211,33 @@ function placeOrder() {
 
   for (var restId in itemsData) {
     var restCategories = itemsData[restId];
+
     for (var category in restCategories) {
-      restCategories[category].forEach(function (item) {
-        var match = window.cartItems.find(function (ci) {
-          return ci.name === item.name;
-        });
+      var itemList = restCategories[category];
+
+      for (var i = 0; i < itemList.length; i++) {
+        var item = itemList[i];
+        var match = null;
+
+        for (var j = 0; j < window.cartItems.length; j++) {
+          if (window.cartItems[j].name === item.name) {
+            match = window.cartItems[j];
+            break;
+          }
+        }
 
         if (match) {
-          if (!ordersByRestaurant[restId]) ordersByRestaurant[restId] = [];
+          if (!ordersByRestaurant[restId]) {
+            ordersByRestaurant[restId] = [];
+          }
+
           ordersByRestaurant[restId].push({
             name: match.name,
             price: match.price,
             quantity: match.quantity
           });
         }
-      });
+      }
     }
   }
 
@@ -230,7 +246,7 @@ function placeOrder() {
     var existingOrders = JSON.parse(localStorage.getItem(restOrdersKey)) || [];
 
     existingOrders.push({
-      id: Date.now(),
+      id: new Date().getTime(),
       userName: loginUser.name || loginUser.username || "Unknown",
       items: ordersByRestaurant[rId],
       status: "Pending"
@@ -244,10 +260,13 @@ function placeOrder() {
   updateCartCounter();
 
   var cartModal = bootstrap.Modal.getInstance(document.getElementById('cartModal'));
-  if (cartModal) cartModal.hide();
+  if (cartModal) {
+    cartModal.hide();
+  }
 
   Swal.fire("Order Placed!", "Your order has been sent to the restaurant.", "success");
 }
+
 
 function logout() {
   localStorage.removeItem("currentUser");

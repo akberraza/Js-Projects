@@ -3,9 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
+
+
     <!-- Bootstrap V-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -15,48 +15,47 @@
     <title>Restaurant | Signup</title>
 </head>
 
-<body >
-  
-
-    <div class="container background" style="min-height:100vh !important;">
+<body>
+    <div class="container background" style="min-height: 100vh !important">
         <form>
             <section class="h-100">
                 <div class="container-fluid py-5">
                     <div class="row d-flex justify-content-center align-items-center h-100">
                         <div class="col-xl-6 bg-transparent-user">
-                            <div class="card-body p-md-5 text-black shadow p-3 mb-5 bg-body rounded">
-                                <h1 class="mb-5 text-capitalize d-flex justify-content-center fw-bold">
-                                    <img width="300px" src="./images/foodpanda-c.png" alt="">
+                            <div class="card-body p-md-5 text-black shadow  p-3 mb-5 bg-body rounded">
+                                <h1 class="mb-5 text-capitalize d-flex justify-content-center  fw-bold">
+                                    <img src="images/foodpanda-c.png" width="300px" alt="">
                                 </h1>
                                 <h6>Signup as Restaurant</h6>
                                 <h3 class="mb-5 fw-bold">Let's start selling!</h3>
 
                                 <div class="form-outline mb-4">
-                                    <label class="form-label" for="signupResName">Restaurant Name</label>
-                                    <input type="email" id="signupResName" oninput="resSignupValidation()"
-                                        class="form-control rounded-0 form-control-lg" autocapitalize="none"
-                                        autocorrect="off" required />
+                                    <label class="form-label">Restaurant Name</label>
+                                    <input type="text" id="signupResName" oninput="resSignupValidation()"
+                                        class="form-control rounded-0 shadow-remove form-control-lg" autocapitalize="none">
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <label class="form-label" for="signupResEmail">Email ID</label>
-                                    <input type="email" id="signupResEmail"
-                                        class="form-control rounded-0 form-control-lg" required />
+                                    <label class="form-label">Email ID</label>
+                                    <input type="email" id="signupResEmail" class="form-control rounded-0 form-control-lg shadow-remove"
+                                        required>
                                 </div>
+
                                 <div class="form-outline mb-4">
-                                    <label for="signupRescountry" class="form-label">Country</label>
-                                    <select id="signupRescountry" 
-                                        class="form-select shadow-remove form-select-lg borderradius-remove"
-                                        aria-label="Default select example" style="font-size: 16px;" required>
-                                        <option value="" selected>Not Selected</option>
+                                    <label class="form-label">Country</label>
+                                    <select id="signupRescountry"
+                                        class="form-select rounded-0 shadow-remove form-select-lg borderradius-remove"
+                                        style="font-size:16px;" required>
+                                        <option selected>Not Selected</option>
                                         <option value="Pakistan">Pakistan</option>
                                     </select>
                                 </div>
+
                                 <div class="form-outline mb-4">
-                                    <label for="signuResCity" class="form-label">City</label>
-                                    <select id="signuResCity" 
-                                        class="form-select shadow-remove form-select-lg borderradius-remove"
-                                        aria-label="Default select example" style="font-size: 16px;" required>
+                                    <label class="form-label">City</label>
+                                    <select id="signuResCity"
+                                        class="form-select shadow-remove rounded-0 form-select-lg borderradius-remove"
+                                        style="font-size: 16px;">
                                         <option value="" selected>Not Selected</option>
                                         <option value="Karachi">Karachi</option>
                                         <option value="Lahore">Lahore</option>
@@ -82,27 +81,27 @@
                                         <option value="Mardan">Mardan</option>
                                     </select>
                                 </div>
-                                
+
                                 <div class="form-outline mb-1">
-                                    <label class="form-label" for="signupResPassword">Password</label>
+                                    <label class="form-label">Password</label>
                                     <input type="password" id="signupResPassword"
-                                        class="form-control rounded-0 form-control-lg" required />
+                                    class="form-control rounded-0 form-control-lg shadow-remove" required>
                                 </div>
-                                
+
                                 <div class="d-flex justify-content-between">
-                                    <div id="" class="form-text mb-4 text-center pt-4">
-                                        SignUp as <a class="link-style" href="usersignup.html"> User</a>
+                                    <div class="form-text mb-4 text-center pt-4">
+                                        SignUp as <a href="usersignup.html" class="link-style">User</a>
                                     </div>
-                                    <div id="" class="form-text mb-4 text-center pt-4">
-                                        Already have an account <a class="link-style" href="loginForm.html">Login here</a>
+
+                                    <div class="form-text mb-4 text-center pt-4">
+                                        Aleady have an account <a href="loginForm.html" class="link-style">Login here</a>
                                     </div>
                                 </div>
 
                                 <div class="d-flex justify-content-start pt-3">
-                                    <button type="button" onclick="resturantSignUp();" 
-                                        class="rounded-0 text-light button-style">
-                                        Create Account
-                                    </button>
+                                    <button  type="button" onclick="resturantSignUp();"
+                                    class="rounded-0 text-light button-style">
+                                    Create Account</button>
                                 </div>
                             </div>
                         </div>
@@ -110,24 +109,15 @@
                 </div>
             </section>
         </form>
-
     </div>
-
-
-
-
-
-
-
-
+        <!-- Js File -->
     <script src="app.js"></script>
+    <!-- Sweet Alert! -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+<!-- Bootstrap -->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-</body>
 </body>
 
 </html>

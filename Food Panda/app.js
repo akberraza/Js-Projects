@@ -139,7 +139,7 @@ function login() {
       ) {
         user = restaurantArr[j];
         localStorage.setItem("shopName", user.username);
-        localStorage.setItem("currentRestaurantEmail", user.email);  // ✅ ADDED LINE HERE
+        localStorage.setItem("currentRestaurantEmail", user.email); 
         break;
       }
     }

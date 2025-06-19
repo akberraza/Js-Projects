@@ -11,8 +11,8 @@ var categoryName = (function () {
 })();
 
 // ======== Set Page Titles (Category & Shop Name) ========
-document.getElementById("categoryNameTitle").textContent = categoryName;
-document.getElementById("shopNameNav").textContent = localStorage.getItem("shopName") || "Restaurant";
+  document.getElementById("categoryNameTitle").textContent = categoryName;
+  document.getElementById("shopNameNav").textContent = localStorage.getItem("shopName") || "Restaurant";
 
 // ======== Define Variables for DOM Elements ========
 var currentRestaurantEmail = localStorage.getItem("currentRestaurantEmail");

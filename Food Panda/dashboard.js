@@ -18,7 +18,6 @@ function renderOrders() {
   var acceptedDiv = document.getElementById("acceptedOrders");
   var deliveredDiv = document.getElementById("deliveredOrders");
 
-  // agar rejectedOrders ka container exist nahi karta to skip karo
   var rejectedDiv = document.getElementById("rejectedOrders") || document.createElement("div");
 
   pendingDiv.innerHTML = "";
@@ -26,10 +25,11 @@ function renderOrders() {
   deliveredDiv.innerHTML = "";
   rejectedDiv.innerHTML = "";
 
-  orders.forEach(function (order, index) {
-    // agar order.id nahi diya gaya to auto generate karo
+  for (var i = 0; i < orders.length; i++) {
+    var order = orders[i];
+
     if (!order.id) {
-      order.id = Date.now() + index;
+      order.id = Date.now() + i;
     }
 
     var orderCard = document.createElement("div");
@@ -37,9 +37,12 @@ function renderOrders() {
 
     var userName = order.userName || "Unknown User";
 
-    var itemsHtml = order.items.map(function (item) {
-      return `<li>${item.name} - Rs ${item.price} x ${item.quantity || 1}</li>`;
-    }).join("");
+    var itemsHtml = "";
+    for (var j = 0; j < order.items.length; j++) {
+      var item = order.items[j];
+      var quantity = item.quantity || 1;
+      itemsHtml += `<li>${item.name} - Rs ${item.price} x ${quantity}</li>`;
+    }
 
     var buttonsHtml = "";
 
@@ -72,9 +75,8 @@ function renderOrders() {
     } else if (order.status === "Rejected") {
       rejectedDiv.appendChild(orderCard);
     }
-  });
+  }
 
-  // update localStorage with any new IDs assigned
   localStorage.setItem("orders_" + currentRestaurantEmail, JSON.stringify(orders));
 }
 
@@ -95,5 +97,4 @@ function updateOrderStatus(id, newStatus) {
   renderOrders();
 }
 
-// 🟢 Page load pe render
 renderOrders();
