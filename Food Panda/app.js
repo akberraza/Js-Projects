@@ -131,7 +131,7 @@ function login() {
         break;
       }
     }
-  } else {
+  } else { 
     for (var j = 0; j < restaurantArr.length; j++) {
       if (
         (restaurantArr[j].email === emailOrUsername || restaurantArr[j].username === emailOrUsername) &&
@@ -145,7 +145,7 @@ function login() {
     }
   }
 
-  if (user) {
+  if (user) { 
     localStorage.setItem("loggedIn", JSON.stringify(user));
     Swal.fire("Login Successful!", "", "success").then(function () {
       window.location.href = loginType === "user" ? "userDashboard.html" : "resturantDash.html";

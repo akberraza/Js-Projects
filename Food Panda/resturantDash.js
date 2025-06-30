@@ -54,7 +54,7 @@ function renderCategories() {
       '<div class="card">' +
       '<img src="' + cat.image + '" class="card-img-top" alt="' + cat.name + '" style="height:200px; object-fit:cover;">' +
       '<div class="card-body">' +
-      '<h5 class="card-title">' + cat.name + '</h5>' +
+      '<h5 class="card-title">' + cat.name + '</h5>' + 
       '<button class="pink btn btn-lg" onclick="deleteCategory(' + i + ')">Delete</button>' + // Delete button
       '<a href="resDashboard.html?category=' + encodeURIComponent(cat.name) + '" class="pink btn btn-lg ms-2">Items</a>' + // Go to items page
       '</div>' +
