@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E-Commerce</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">🛍️ MyShop</div>
+    <input type="text" id="searchBar" placeholder="Search products..." />
+    <button id="cartBtn">🛒 Cart (<span id="cart-count">0</span>)</button>
+  </nav>
+
+  <div id="products-container"></div>
+
+  <div id="cart-modal" class="hidden">
+    <div class="cart-header">
+      <h2>Your Cart</h2>
+      <span id="close-cart">✕</span>
+    </div>
+    <div id="cart-container"></div>
+    <p><strong>Total:</strong> Rs. <span id="total-price">0</span></p>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
