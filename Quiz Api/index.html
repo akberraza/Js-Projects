@@ -7,18 +7,34 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>General Knowledge Quiz</h1>
-    <div id="quiz-box">
-      <p id="question"></p>
-      <div id="answers">
-        <button id="btn1" onclick="nextQuestion()"></button>
-        <button id="btn2" onclick="nextQuestion()"></button>
-        <button id="btn3" onclick="nextQuestion()"></button>
-        <button id="btn4" onclick="nextQuestion()"></button>
+
+
+  <div class="quiz-container">
+
+    <div class="quiz-header">
+      <div id="questionCount">1/10</div>
+
+      <div class="timer-circle">
+        <div id="timer" class="timer-text">10</div>
+        <svg>
+          <circle cx="30" cy="30" r="28" />
+        </svg>
       </div>
     </div>
+
+    <div id="questionBox" class="question-box">Loading...</div>
+    <div id="optionsBox" class="options-box"></div>
+    <div id="scoreBox">Score: 0</div>
+
+    <button id="nextBtn" class="next-btn" onclick="goToNext()">Next</button>
+
+    <div id="endBox" class="end-box" style="display:none;">
+      <h2 id="finalScore">Your Final Score: 0</h2>
+      <button onclick="restartQuiz()" class="restart-btn">Restart</button>
+      <button onclick="cancelQuiz()" class="cancel-btn">Cancel</button>
+    </div>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>
